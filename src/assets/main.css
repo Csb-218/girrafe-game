@@ -1,23 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap');
 @import './base.css';
+@import "tailwindcss";
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+@theme {
+  --font-gabarito: "Gabarito", sans-serif;
+
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+.font-gabarito-bold {
+  font-family: var(--font-gabarito);
+  font-weight: 700;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+.color-primary-text {
+  @apply text-[#6BADD7];
+}
+
+.button-primary{
+  @apply bg-[#4AC1BD] px-[16px] py-[8px] rounded-lg text-white shadow-[#25A49F] shadow-md
+}
+
+@media (max-width: 640px) {
+  body {
+    @apply flex min-h-screen  justify-center;
+  }
+
+  #app {
+    @apply w-full mx-auto px-0;
+  }
+
+  /* Mobile specific adjustments */
+  .button-primary {
+    @apply text-sm;
   }
 }
 
@@ -25,11 +39,5 @@ a,
   body {
     display: flex;
     place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
   }
 }
