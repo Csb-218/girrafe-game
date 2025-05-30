@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, watch } from 'vue'
+import CompareOrder from '@/views/CompareOrder.vue'
 
 const showGame = ref<boolean>(false)
 const countdown = ref<number>(4)
@@ -19,14 +20,11 @@ watch(showGame, (newValue) => {
 
 onMounted(() => {
   countdownInterval = setInterval(() => {
-    if (countdown.value > 0) {
+    if (countdown.value >= 1) {
       console.log(countdown.value)
       countdown.value--
     } else {
-      // Show instruction for 1.5 seconds before starting game
-      setTimeout(() => {
         showGame.value = true
-      }, 1500)
     }
   }, 1000)
 });
@@ -43,11 +41,8 @@ onUnmounted(() => {
 
 <template>
 
-<section v-if="showGame" class="bg-[#F5FBFF] p-2 h-full">
-  <header class="flex items-center gap-x-24 ">
-    <h1 class="text-lg font-bold text-center">The Tall Girrafe</h1>
-    <button @click="showGame = false" class="text-red-500">Close Game</button>
-  </header>
+<section v-if="showGame" class="h-full bg-[#F5FBFF]">
+  <CompareOrder />
 </section>
 
 <section v-else class="bg-[#F5FBFF] p-2 h-full font-gabarito-bold text-6xl color-primary-text flex items-center justify-center">
@@ -56,7 +51,7 @@ onUnmounted(() => {
     <p v-else-if="countdown===3" key="3">3</p>
     <p v-else-if="countdown===2" key="2">2</p>
     <p v-else-if="countdown===1" key="1">1</p>
-    <p v-else key="instruction" class="text-lg">Order the giraffes based on their Height</p>
+
   </Transition>
 </section>
 </template>
